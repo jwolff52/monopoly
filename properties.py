@@ -1,4 +1,4 @@
-from tinydb import TinyDB, Query
+from tinydb import TinyDB
 
 class Property:
 
@@ -26,13 +26,15 @@ class Property:
   def toString(self):
     return "Name: " + self.name + "\nPrice: " + str(self.price) + "\nMortgage: " + str(self.mortgage) + "\nRent: " + str(self.rent) + "\nHouse Rents: " + str(self.houseRents).replace('[', '').replace(']', '') + "\nHouse/Hotel Price: " + str(self.housePrice) + "\nHotel Rent: " + str(self.hotelRent) + "\nMortgaged? " + ("Yes" if self.isMortgaged else "No") + "\nOwned? " + ("Yes" if self.isOwned else "No")
 
-# Connect to properties db
-db = TinyDB('properties.db')
-query = Query()
-properties = []
 
-for property in db.all():
-  properties.append(Property(property['name'], property['price'], property['rent'], property['houseRents'], property['housePrice'], property['hotelRent']))
+class Properties:
+  properties = []
 
-for p in properties:
-  print(p.toString())
+  def __init__(self):
+    # Connect to properties db
+    db = TinyDB('properties.db')
+
+    for property in db.all():
+      self.properties.append(Property(property['name'], property['price'], property['rent'], property['houseRents'], property['housePrice'], property['hotelRent']))
+
+

@@ -1,6 +1,7 @@
 # Adapted from the code in this video: https://www.youtube.com/watch?v=ubQXz5RBBtU Thanks Matt!
 
 import random
+from properties import Properties
 from random import shuffle
 
 def monopoly(finish_order=2, games_order=1):
@@ -10,6 +11,9 @@ def monopoly(finish_order=2, games_order=1):
 
   # Initialize Board Indexes
   squares = []
+  properties = Properties().properties
+
+  print(properties[3].toString())
 
   while len(squares) < 40:
     squares.append(0)
