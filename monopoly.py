@@ -106,16 +106,14 @@ def turn(playerID, doubles, squares):
           updatePosition(playerID, chance_card, False)
         elif chance_card == 'U':
           amt = 0
-          playerPosition = Players.players[playerID].position
-          while playerPosition not in [12,28]:
-            playerPosition = (playerPosition + 1)%40
+          while position not in [12,28]:
+            position = (position + 1)%40
             amt += 1
           updatePosition(playerID, amt)
         elif chance_card == 'R':
           amt = 0
-          playerPosition = Players.players[playerID].position
-          while playerPosition not in [5,15,25,35]:
-            playerPosition = (playerPosition + 1)%40
+          while position not in [5,15,25,35]:
+            position = (position + 1)%40
             amt += 1
           updatePosition(playerID, amt)
         elif chance_card == 'B':
