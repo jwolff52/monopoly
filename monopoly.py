@@ -23,9 +23,8 @@ def init():
   chest = shuffleCards(master_chest)
   chance = shuffleCards(master_chance)
 
-def monopoly(finish_order=2, games_order=1):
+def monopoly(games_order=1):
 
-  finish = 10**finish_order
   games = 10**games_order
 
   squares = []

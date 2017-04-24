@@ -1,4 +1,5 @@
 from tinydb import TinyDB
+import random
 
 class Property:
 
@@ -36,6 +37,8 @@ unpurchasableProperties = [0,2,4,7,10,17,20,22,30,33,36,38]
 sets = [(1,3), (5,10,15,20), (6,8,9), (11,13,14), (12,28), (16,18,19), (21,23,24), (26,27,29), (31,32,34), (37,39)]
 
 def init():
+  global properties
+  properties = []
   # Connect to properties db
   db = TinyDB('properties.db')
 
@@ -57,12 +60,20 @@ def getRent(propertyID, ownersProperties):
 
   property = properties[propertyID]
 
-  if property.houses == 0:
-    if len(pSet) == ownedInSet:
-      return property.rent*2
+  if 5 in pSet:
+    return 25 * ownedInSet
+  elif 12 in pSet:
+    if ownedInSet == 1:
+      return 4*((random.random()*10)+2)
     else:
-      return property.rent
-  elif property.hasHotel:
-    return property.hotelRent
+      return 10*((random.random()*10)+2)
   else:
-    return property.houseRents[property.houses-1]
+    if property.houses == 0:
+      if len(pSet) == ownedInSet:
+        return property.rent*2
+      else:
+        return property.rent
+    elif property.hasHotel:
+      return property.hotelRent
+    else:
+      return property.houseRents[property.houses-1]

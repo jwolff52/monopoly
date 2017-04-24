@@ -25,6 +25,8 @@ class Player:
 players = []
 
 def init():
+  global players
+  players = []
   # Connect to db
   db = TinyDB('players.db')
 
