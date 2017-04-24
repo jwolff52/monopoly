@@ -45,7 +45,7 @@ def monopoly(games_order=1):
 
     turns = 0
 
-    while noWinner() and turns < 1000:
+    while noWinner():
       if turns%10 == 0:
         print('Turn: ' + str(turns))
         for player in Players.players:
