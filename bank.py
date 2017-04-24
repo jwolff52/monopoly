@@ -1,6 +1,7 @@
 import players as Players
 import properties as Properties
 import random
+from random import shuffle
 
 def purchaseProperty(playerID):
   player = Players.players[playerID]
@@ -96,7 +97,16 @@ def amountToMoneyArray(amount):
   return amountAsMoney
 
 def auctionProperty(propertyID):
+  purchased = False
+  players = []
   for player in Players.players:
-    #TODO: Proper purchasing algorithm
-    if random.randint(1,10) > 5 and purchaseProperty(player.id):
-      break
+    players.append(player)
+  shuffle(players)
+  attempts = 0
+  while not purchased and attempts < 100:
+    for player in players:
+      #TODO: Proper purchasing algorithm
+      if random.randint(1,10) > 5 and purchaseProperty(player.id):
+        purchased = True
+        break
+    attempts+=1
