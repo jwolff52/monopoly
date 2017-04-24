@@ -51,15 +51,8 @@ def monopoly(finish_order=2, games_order=1):
           print('Properties: ' + str(player.ownedProperties))
           print('Position: ' + str(player.position))
           print('')
-      # print('No winner')
       for player in Players.players:
-        playerList = ""
-        for player in Players.players:
-          playerList += player.name + ", "
-        print(playerList + str(len(Players.players)))
-        # print('Player: ' + player.name)
         if not player.isBankrupt:
-          # print(player.name + "'s turn.")
           while True:
             doubles = 0
             doubles, squares = turn(player.id, doubles, squares)
@@ -72,11 +65,11 @@ def monopoly(finish_order=2, games_order=1):
   return squares
 
 def noWinner():
-  remainingPlayers = Players.players
+  remainingPlayers = 0
   for player in Players.players:
-    if player.isBankrupt:
-      remainingPlayers.remove(player)
-  return len(remainingPlayers) > 0
+    if not player.isBankrupt:
+      remainingPlayers += 1
+  return remainingPlayers > 0
 
 def turn(playerID, doubles, squares):
   diceroll = int(36*random.random())
