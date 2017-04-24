@@ -1,5 +1,6 @@
 import players as Players
 import properties as Properties
+import random
 
 def purchaseProperty(playerID):
   player = Players.players[playerID]
@@ -94,3 +95,8 @@ def amountToMoneyArray(amount):
   amountAsMoney.reverse()
   return amountAsMoney
 
+def auctionProperty(propertyID):
+  for player in Players.players:
+    #TODO: Proper purchasing algorithm
+    if random.randint(1,10) > 5 and purchaseProperty(player.id):
+      break

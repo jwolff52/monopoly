@@ -148,12 +148,11 @@ def updatePosition(playerID, amt, goPassable=True):
   if Properties.properties[player.position].isOwned and not Properties.properties[player.position].isMortgaged:
     Bank.payPropertyOwner(playerID)
   elif not Properties.properties[player.position].isOwned and player.position not in Properties.unpurchasableProperties:
-    # Proper purchasing algorithm
-    if Bank.purchaseProperty(playerID):
+    # TODO: Proper purchasing algorithm
+    if random.randint(1, 10) > 5 and Bank.purchaseProperty(playerID):
       return None
     else:
-      0
-      # TODO: Auction off property
+      Bank.auctionProperty(player.position)
 
 def goToJail(playerID):
   player = Players.players[playerID]
