@@ -38,12 +38,16 @@ def monopoly(finish_order=2, games_order=1):
 
   while games_finished < games:
 
+    init()
+    Players.init()
+    Properties.init()
+
     print('Game: ' + str(games_finished))
 
     turns = 0
 
-    while noWinner():
-      if turns%100 == 0:
+    while noWinner() and turns < 1000:
+      if turns%10 == 0:
         print('Turn: ' + str(turns))
         for player in Players.players:
           print(player.name)
@@ -138,7 +142,7 @@ def updatePosition(playerID, amt, goPassable=True):
   player.position = (player.position + amt)%40
 
   if goPassable and origionalPosition > player.position:
-    player.money[6] += 2
+    player.money[5] += 2
 
   Players.players[playerID] = player
 
@@ -173,7 +177,4 @@ def shuffleCards(input):
   shuffle(output)
   return output
 
-init()
-Players.init()
-Properties.init()
 print(monopoly())
