@@ -32,3 +32,11 @@ def init():
   for player in db.all():
     players.append(Player(index, player['name']))
     index += 1
+
+def getPropertyOwnerID(propertyID):
+  for player in players:
+    if propertyID in player.ownedProperties:
+      return player.id
+
+def getPropertyOwner(propertyID):
+  return players[getPropertyOwnerID(propertyID)]
